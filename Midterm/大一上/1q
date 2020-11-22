@@ -1,0 +1,99 @@
+file = open('text.txt','r')
+
+split = file.readline().split()
+line = split[0]
+
+operation_small = []
+operation_big = []
+n = 0
+level = []
+level_count = 0
+
+while n < len(line):
+    if line[n] == '(' or line[n] == ')':
+        n = n + 1
+        
+    else:
+        flag = 0
+        level_count = 0
+
+        for x in range(0,n):
+            if line[x] == '(':
+                level_count += 1
+            elif line[x] == ')':
+                level_count -= 1
+        level.append(level_count)
+
+        for m in range(n,len(line)):
+            if line[m] == '(' or line[m] == ')':
+                break
+            operation_small.append(line[m])
+            flag += 1
+        operation_small_str = "".join(operation_small)
+        if operation_small_str != '':
+            operation_big.append("".join(operation_small))
+        operation_small = []
+        n = n + flag
+    
+print(operation_big)
+print(level)
+
+num = []
+
+for n in range(0,len(operation_big)):
+    for m in range(0,len(operation_big[n])):
+        if operation_big[n][m] == '+':
+            try:
+                result = int(operation_big[n][:m]) + int(operation_big[n][m+1:])
+                num.append(result)
+            except:
+                num.append(operation_big[n][m])
+        elif operation_big[n][m] == '-':
+            try:
+                result = int(operation_big[n][:m]) - int(operation_big[n][m+1:])
+                num.append(result)
+            except:
+                num.append(operation_big[n][m])
+        elif operation_big[n][m] == '*':
+            try:
+                result = int(operation_big[n][:m]) * int(operation_big[n][m+1:])
+                num.append(result)
+            except:
+                num.append(operation_big[n][m])
+
+        elif operation_big[n][m] == '/':
+            try:
+                result = int(operation_big[n][:m]) / int(operation_big[n][m+1:])
+                num.append(result)
+            except:
+                num.append(operation_big[n][m])
+
+print(num)
+
+max_level = level[0]
+for n in range(0,len(level)):
+    max_level = max(max_level, level[n])
+    
+count = max_level    
+while count >= 0:
+    for n in range(0, len(num)):
+        if level[n] == count:
+            if num[n+1] == '+':
+                result = num[n] + num[n+2]
+            elif num[n+1] == '-':
+                result = num[n] - num[n+2]
+            elif num[n+1] == '*':
+                result = num[n] * num[n+2]
+            elif num[n+1] == '/':
+                result = num[n] / num[n+2]
+
+            del num[n+2]
+            del num[n+1]
+            del num[n]
+            num.insert(n, result)
+            print(num)
+
+    count -= 1
+
+print(num)
+file.close()
