@@ -27,7 +27,7 @@ int main()
 		
 		len = str.length();
 
-		result = palindrome( str, 0);
+		result = palindrome( str, 0 );
 		if ( result == 1 )
 		{
 			cout << "Palindrome!" << endl;
@@ -39,7 +39,7 @@ int main()
 	}
 }//main
 
-int palindrome( string str, int k)
+int palindrome( string str, int k )
 {
 	int len = str.length();
 	int result;
