@@ -20,7 +20,7 @@ int main()
 
 		if ( order == "push" )
 		{
-			cin >> ( s + i );
+			cin >> *( s + i );
 			i++;
 		}
 		else if ( order == "pop" )
@@ -29,6 +29,7 @@ int main()
 			{
 				i--;
 				cout << *( s + i ) << endl;
+				*( s + i ) = '\0';
 			}
 			else
 			{
