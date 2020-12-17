@@ -46,8 +46,10 @@ int main()
 		{
 			break;
 		}
-		
-		
 	}
+
+	for ( int j = 0; j <= i; j++ )
+		delete *( s + i );
+
 	return 0;
 }
