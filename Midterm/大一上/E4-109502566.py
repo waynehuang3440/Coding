@@ -3,10 +3,11 @@ file = open('text.txt','r')
 loop_times = 1
 for readline in file:
     
-    print("----------looped",loop_times,"times----------")
+    """print("----------looped",loop_times,"times----------")"""
 
     split = readline.split()
     line = split[0]
+    answer = float(split[2])
 
     operation_small = []
     operation_big = []
@@ -41,7 +42,6 @@ for readline in file:
             n = n + flag
 
     num = []
-    print(operation_big)
 
     operation_big_len = len(operation_big)
     index = 0
@@ -68,8 +68,6 @@ for readline in file:
                 operation_big_len += 1
 
         index += 1
-
-    print(operation_big)
 
     for n in range(0,len(operation_big)):
         
@@ -109,9 +107,6 @@ for readline in file:
     for n in range(0,len(level)):
         max_level = max(max_level, level[n])
 
-    print(num)
-    print(level)
-
     count = max_level
     num_len = len(num) 
     while count > 0:
@@ -122,7 +117,6 @@ for readline in file:
         while n < num_len:
 
             if level[n] == count:
-                print(n)
                 if n == 0:
                     if num[n+1] == '+':
                         result = num[n] + num[n+2]
@@ -208,14 +202,17 @@ for readline in file:
                     num.insert(n-2, result)
                     level.insert(n-2, count-1)
                     num_len = num_len - 2
-                print(num)
-                print(level)
 
             n += 1
         count -= 1
 
     result = num[0]
-    print("RESULT =",result)
+   
+    if float(result) == answer:
+        print("T")
+    else:
+        print("F")
+
     loop_times += 1
 
 file.close()
