@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+
+class Student{
+public:
+    //do something
+
+private:
+    //do something
+};
+
+//do something
+
+int main()
+{
+    //do something
+
+    cout << "Before" << endl;
+    cout << student1.getId() << " : " << student1.getName() << " : " << student1.getScore() << endl;
+    cout << student2.getId() << " : " << student2.getName() << " : " << student2.getScore() << endl;
+
+    //do something
+
+    cout << "After" << endl;
+    cout << student1.getId() << " : " << student1.getName() << " : " << student1.getScore() << endl;
+    cout << student2.getId() << " : " << student2.getName() << " : " << student2.getScore() << endl;
+
+    return 0;
+}
